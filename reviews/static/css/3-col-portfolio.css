@@ -21,3 +21,6 @@ body {
 .pagination {
   margin-bottom: 30px;
 }
+.input-group{
+  width: 110px;
+}

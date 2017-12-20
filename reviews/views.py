@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.views import generic
 from .models import Image, Meme, Review
+from .forms import CreateReview
+from django.views.generic.edit import FormMixin
 
 
 # generic.ListView automatically gets the "context" the context is the data
@@ -12,3 +14,8 @@ class MemeReviews(generic.ListView):
     template_name = "index.html"
     paginate_by = 3
     ordering = ['-dateCreated']
+
+
+class Meme(generic.DetailView, FormMixin):
+    model = Meme
+    form_class = CreateReview

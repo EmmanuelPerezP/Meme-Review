@@ -1,0 +1,88 @@
+{% extends "base_generic.html" %}
+
+{% block title %} <title> Contacto </title> {% endblock %}
+
+{% block content %}
+<!-- Page Content -->
+<div class="container">
+
+  <!-- Portfolio Item Heading -->
+  <h1 class="my-4">{{meme.title}}
+    <small>a meme review</small>
+  </h1>
+
+  <!-- Portfolio Item Row -->
+  <div class="row">
+
+    <div class="col-md-8">
+      <img class="img-fluid" src="{{meme.mainImage}}" alt="">
+    </div>
+
+    <div class="col-md-4">
+      <h3 class="my-3">{{meme.title}}</h3>
+      <p>{{meme.description}}</p>
+    </div>
+
+  </div>
+  <!-- /.row -->
+
+  <!-- comment section -->
+  <div class="row">
+    <!-- Post Content Column -->
+    <div class="col-lg-8">
+      <!-- Comments Form -->
+      <div class="card my-4">
+        <h5 class="card-header">Leave a Review:</h5>
+        <div class="card-body">
+          <form>
+            <div class="form-group">
+              <p>
+                <label for="id_message">Message:</label>
+                <textarea name="message" cols="40" rows="3" class="form-control" required id="id_message"> </textarea>
+              </p>
+              <p>
+                <label for="id_rating">Rating:</label>
+                <input type="number" name="rating" min="0" max="10" required id="id_rating" />
+              </p>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Single Comment -->
+      <div class="media mb-4">
+        <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+        <div class="media-body">
+          <h5 class="mt-0">Title</h5>
+          Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+        </div>
+      </div>
+
+    </div>
+    <!-- /.col -->
+  </div>
+  <!-- /.row -->
+
+  <!-- Related Projects Row -->
+  <h3 class="my-4">RElaTed ImAGEs</h3>
+
+  <div class="row">
+
+    {% if meme.relatedImages.all %}
+    {% for imageMeme in meme.relatedImages.all %}
+    <div class="col-md-3 col-sm-6 mb-4">
+      <a href="#">
+        <img class="img-fluid" src="{{imageMeme.imageURL}}" alt="">
+      </a>
+    </div>
+    {% endfor %}
+    {% endif %}
+
+  </div>
+  <!-- /.row -->
+
+</div>
+<!-- /.container -->
+
+{% endblock content %}

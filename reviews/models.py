@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from django.utils.text import slugify
 
 
 # Create your models here.
@@ -20,6 +21,7 @@ class Meme(models.Model):
     description = models.CharField(max_length=1000)
     title = models.CharField(max_length=300)
     dateCreated = models.DateTimeField(auto_now_add=True)
+    slug = models.SlugField(max_length=300)
 
     def __str__(self):
         return self.title
@@ -28,12 +30,13 @@ class Meme(models.Model):
         """
         return the url to access this particular post
         """
-        return reverse('meme-detail', args=[str(self.title)])
+        return reverse('meme-detail', args=[self.id, slugify(self.title)])
 
 
 class Review(models.Model):
     textReview = models.CharField(max_length=300)
     titleReview = models.CharField(max_length=100)
+    ratingReview = models.IntegerField()
 
     def __str__(self):
         return self.titleReview
