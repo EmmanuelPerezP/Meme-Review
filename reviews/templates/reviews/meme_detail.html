@@ -61,12 +61,12 @@
       {% if meme.reviews.all %}
       {% for review in meme.reviews.all %}
       <div class="media mb-4">
-        <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
         <div class="media-body">
-          <h5 class="mt-0">{{review.titleReview}}</h5>
+          <h5 class="mt-0">Rating: {{review.ratingReview}}/10</h5>
           {{review.textReview}}
         </div>
       </div>
+      <hr>
       {% endfor %}
       {% endif %}
 
@@ -76,19 +76,38 @@
   <!-- /.row -->
 
   <!-- Related Projects Row -->
-  <h3 class="my-4">RElaTed ImAGEs</h3>
+  <h3 class="my-4">OtHeR MEmeS</h3>
 
   <div class="row">
 
-    {% if meme.relatedImages.all %}
-    {% for imageMeme in meme.relatedImages.all %}
+
+    {% if relatedMemes %}
+    {% for imageMeme in relatedMemes %}
+    <div class="col-lg-4 col-sm-6 portfolio-item">
+      <div class="card h-100">
+        <a href="{{imageMeme.get_absolute_url}}"><img class="card-img-top" src="{{imageMeme.mainImage}}" alt=""></a>
+        <div class="card-body">
+          <h4 class="card-title">
+            <a href="{{imageMeme.get_absolute_url}}">{{imageMeme.title}}</a>
+          </h4>
+          <p class="card-text">{{imageMeme.description}}</p>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+    {% endif %}
+
+    <!--
+    {% if relatedMemes %}
+    {% for imageMeme in relatedMemes %}
     <div class="col-md-3 col-sm-6 mb-4">
-      <a href="#">
-        <img class="img-fluid" src="{{imageMeme.imageURL}}" alt="">
+      <a href="{{imageMeme.get_absolute_url}}">
+        <img class="img-fluid" src="{{imageMeme.mainImage}}" alt="">
       </a>
     </div>
     {% endfor %}
     {% endif %}
+  -->
 
   </div>
   <!-- /.row -->

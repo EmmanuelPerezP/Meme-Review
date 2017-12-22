@@ -25,6 +25,8 @@ class MemeDisplay(generic.DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        # yes i know this shouldnt be done
+        context['relatedMemes'] = Meme.objects.all()[:5]
         context['form'] = CreateReview()
         return context
 
